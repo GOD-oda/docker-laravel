@@ -2,9 +2,23 @@ version: '3'
 services:
   web:
     build: ./docker/nginx
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
     ports:
-    - 8080:80
+      - 8080:80
+    links:
+      - app
+
   app:
     build: ./application
     volumes:
       - ./application:/var/www/html
+    links:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: password
+
