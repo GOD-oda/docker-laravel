@@ -1,7 +1,14 @@
 .PHONY: build
 build:
-	docker-compose build --no-cache
+	docker-compose build
 
 .PHONY: up
-up:
-	docker-compose up -d web
+up: .env
+	docker-compose up -d
+
+.PHONY: setup
+setup: .env
+	docker-compose run --rm app make install
+
+.env:
+	cp application/.env.example application/.env
