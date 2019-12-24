@@ -2,6 +2,9 @@ version: '3'
 services:
   web:
     build: ./docker/nginx
-
+    links:
+      - app
   app:
     build: ./docker/php
+    volumes:
+      - ./:/var/www/html
