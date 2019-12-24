@@ -7,4 +7,4 @@ services:
   app:
     build: ./docker/php
     volumes:
-      - ./:/var/www/html
+      - ./app:/var/www/html
