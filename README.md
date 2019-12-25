@@ -9,3 +9,6 @@ make setup
 ```shell script
 make up
 ```
+
+# アクセス
+localhost:8080
