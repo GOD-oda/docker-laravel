@@ -1,9 +1,10 @@
-FROM php:7.4-fpm-alpine
+FROM ruby:2.6-alpine
 
 WORKDIR /var/www/html
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN apk update && \
+	apk add --no-cache libxml2-dev libxslt-dev
 
-RUN apk add make gcc g++
+RUN gem install bundler
 
-RUN docker-php-ext-install pdo_mysql
+#RUN bundle install --path vendor/bundle
